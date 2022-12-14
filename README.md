@@ -1,0 +1,2 @@
+# Плагин для CLion *OmflViewer*
+
