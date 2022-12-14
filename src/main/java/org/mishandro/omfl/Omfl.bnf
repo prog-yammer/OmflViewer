@@ -1,0 +1,24 @@
+{
+  parserClass="org.mishandro.omfl.parser.OmflParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Omfl"
+  psiImplClassSuffix="Impl"
+  psiPackage="org.mishandro.omfl.psi"
+  psiImplPackage="org.mishandro.omfl.impl"
+
+  elementTypeHolderClass="org.mishandro.omfl.psi.OmflTypes"
+  elementTypeClass="org.mishandro.omfl.psi.OmflElementType"
+  tokenTypeClass="org.mishandro.omfl.psi.OmflTokenType"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property|COMMENT|SECTION)
+
+property ::= (KEY SEPARATOR value)
+
+value ::= (VALUE_STRING|VALUE_BOOL|VALUE_NUM|array)
+
+array ::= (OPEN_ARRAY (value? (COMMA value)*)? CLOSE_ARRAY)
