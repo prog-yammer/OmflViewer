@@ -1,0 +1,64 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>org.mishandro.omfl</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>OneMoreFunnyLanguage</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="prog.yammer@yandex.ru" url="https://github.com/MISHANDRO">MISHANDRO</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>
+        <![CDATA[
+            Плагин для поддержки <a href="https://github.com/is-itmo-c-22/labwork6">".omfl" файлов</>.<br>
+            На данный момент доступны следующие функции:
+            <ul>
+                <li>Подсвечивает синтаксис;</li>
+                <li>Позволяет комментировать (Ctrl + /);</li>
+                <li>Сворачивание секций.</li>
+            </ul>
+            <img src="https://i.ibb.co/z8mPxbh/info.png">
+        ]]>
+    </description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.clion</depends>
+    <depends>com.intellij.modules.cidr.lang</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+                name="Omfl File"
+                implementationClass="org.mishandro.omfl.OmflFileType"
+                fieldName="INSTANCE"
+                language="Omfl"
+                extensions="omfl"/>
+        <lang.parserDefinition
+                language="Omfl"
+                implementationClass="org.mishandro.omfl.OmflParserDefinition"/>
+        <lang.syntaxHighlighterFactory
+                language="Omfl"
+                implementationClass="org.mishandro.omfl.OmflSyntaxHighlighterFactory"/>
+        <lang.commenter
+                language="Omfl"
+                implementationClass="org.mishandro.omfl.OmflCommenter"/>
+        <lang.braceMatcher
+                language="Omfl"
+                implementationClass="org.mishandro.omfl.OmflPairedBraceMatcher"/>
+        <lang.quoteHandler
+                language="Omfl"
+                implementationClass="org.mishandro.omfl.OmflTokenSetQuoteHandler"/>
+        <lang.foldingBuilder
+                language="Omfl"
+                implementationClass="org.mishandro.omfl.OmflFoldingBuilder"/>
+    </extensions>
+</idea-plugin>
